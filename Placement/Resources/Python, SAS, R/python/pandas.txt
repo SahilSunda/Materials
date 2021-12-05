@@ -1,0 +1,509 @@
+The Series Data Structure
+import pandas as pd
+pd.Series?
+animals = ['Tiger', 'Bear', 'Moose']
+pd.Series(animals)
+import pandas as pd
+numbers = [1, 2, 3]
+pd.Series(numbers)
+0    1
+1    2
+2    3
+dtype: int64
+animals = ['Tiger', 'Bear', None]
+pd.Series(animals)
+numbers = [1, 2, None]
+pd.Series(numbers)
+import numpy as np
+np.nan == None
+False
+np.nan == np.nan
+False
+np.isnan(np.nan)
+True
+sports = {'Archery': 'Bhutan',
+          'Golf': 'Scotland',
+          'Sumo': 'Japan',
+          'Taekwondo': 'South Korea'}
+s = pd.Series(sports)
+s
+import pandas as pd
+sports = {'Archery': 'Bhutan',
+          'Golf': 'Scotland',
+          'Sumo': 'Japan',
+          'Taekwondo': 'South Korea'}
+s = pd.Series(sports)
+?
+s.values
+array(['Bhutan', 'Scotland', 'Japan', 'South Korea'], dtype=object)
+s = pd.Series(['Tiger', 'Bear', 'Moose'], index=['India', 'America', 'Canada'])
+s
+import pandas as pd
+sports = {'Archery': 'Bhutan',
+          'Golf': 'Scotland',
+          'Sumo': 'Japan',
+          'Taekwondo': 'South Korea'}
+s = pd.Series(sports, index=['Golf', 'Sumo', 'Hockey'])
+s
+Golf      Scotland
+Sumo         Japan
+Hockey         NaN
+dtype: object
+Querying a Series
+sports = {'Archery': 'Bhutan',
+          'Golf': 'Scotland',
+          'Sumo': 'Japan',
+          'Taekwondo': 'South Korea'}
+s = pd.Series(sports)
+s
+s.iloc[3]
+s.loc['Golf']
+s[3]
+s['Golf']
+sports = {99: 'Bhutan',
+          100: 'Scotland',
+          101: 'Japan',
+          102: 'South Korea'}
+s = pd.Series(sports)
+s[0] #This won't call s.iloc[0] as one might expect, it generates an error instead
+s = pd.Series([100.00, 120.00, 101.00, 3.00])
+s
+total = 0
+for item in s:
+    total+=item
+print(total)
+import numpy as np
+?
+total = np.sum(s)
+print(total)
+#this creates a big series of random numbers
+s = pd.Series(np.random.randint(0,1000,10000))
+s.head()
+len(s)
+%%timeit -n 100
+summary = 0
+for item in s:
+    summary+=item
+%%timeit -n 100
+summary = np.sum(s)
+s+=2 #adds two to each item in s using broadcasting
+s.head()
+for label, value in s.iteritems():
+    s.set_value(label, value+2)
+s.head()
+%%timeit -n 10
+s = pd.Series(np.random.randint(0,1000,10000))
+for label, value in s.iteritems():
+    s.loc[label]= value+2
+%%timeit -n 10
+s = pd.Series(np.random.randint(0,1000,10000))
+s+=2
+?
+s = pd.Series([1, 2, 3])
+s.loc['Animal'] = 'Bears'
+s
+original_sports = pd.Series({'Archery': 'Bhutan',
+                             'Golf': 'Scotland',
+                             'Sumo': 'Japan',
+                             'Taekwondo': 'South Korea'})
+cricket_loving_countries = pd.Series(['Australia',
+                                      'Barbados',
+                                      'Pakistan',
+                                      'England'], 
+                                   index=['Cricket',
+                                          'Cricket',
+                                          'Cricket',
+                                          'Cricket'])
+all_countries = original_sports.append(cricket_loving_countries)
+original_sports
+cricket_loving_countries
+all_countries
+all_countries.loc['Cricket']
+The DataFrame Data Structure
+import pandas as pd
+purchase_1 = pd.Series({'Name': 'Chris',
+                        'Item Purchased': 'Dog Food',
+                        'Cost': 22.50})
+purchase_2 = pd.Series({'Name': 'Kevyn',
+                        'Item Purchased': 'Kitty Litter',
+                        'Cost': 2.50})
+purchase_3 = pd.Series({'Name': 'Vinod',
+                        'Item Purchased': 'Bird Seed',
+                        'Cost': 5.00})
+df = pd.DataFrame([purchase_1, purchase_2, purchase_3], index=['Store 1', 'Store 1', 'Store 2'])
+df.head()
+Cost	Item Purchased	Name
+Store 1	22.5	Dog Food	Chris
+Store 1	2.5	Kitty Litter	Kevyn
+Store 2	5.0	Bird Seed	Vinod
+df.loc['Store 2']
+type(df.loc['Store 2'])
+df.loc['Store 1']
+import pandas as pd
+purchase_1 = pd.Series({'Name': 'Chris',
+                        'Item Purchased': 'Dog Food',
+                        'Cost': 22.50})
+purchase_2 = pd.Series({'Name': 'Kevyn',
+                        'Item Purchased': 'Kitty Litter',
+                        'Cost': 2.50})
+purchase_3 = pd.Series({'Name': 'Vinod',
+                        'Item Purchased': 'Bird Seed',
+                        'Cost': 5.00})
+df = pd.DataFrame([purchase_1, purchase_2, purchase_3], index=['Store 1', 'Store 1', 'Store 2'])
+df.head()
+df.loc['Store 1', 'Cost']
+Store 1    22.5
+Store 1     2.5
+Name: Cost, dtype: float64
+df.T
+df.T.loc['Cost']
+import pandas as pd
+purchase_1 = pd.Series({'Name': 'Chris',
+                        'Item Purchased': 'Dog Food',
+                        'Cost': 22.50})
+purchase_2 = pd.Series({'Name': 'Kevyn',
+                        'Item Purchased': 'Kitty Litter',
+                        'Cost': 2.50})
+purchase_3 = pd.Series({'Name': 'Vinod',
+                        'Item Purchased': 'Bird Seed',
+                        'Cost': 5.00})
+df = pd.DataFrame([purchase_1, purchase_2, purchase_3], index=['Store 1', 'Store 1', 'Store 2'])
+df.head()
+df['Cost']
+Store 1    22.5
+Store 1     2.5
+Store 2     5.0
+Name: Cost, dtype: float64
+import pandas as pd
+purchase_1 = pd.Series({'Name': 'Chris',
+                        'Item Purchased': 'Dog Food',
+                        'Cost': 22.50})
+purchase_2 = pd.Series({'Name': 'Kevyn',
+                        'Item Purchased': 'Kitty Litter',
+                        'Cost': 2.50})
+purchase_3 = pd.Series({'Name': 'Vinod',
+                        'Item Purchased': 'Bird Seed',
+                        'Cost': 5.00})
+df = pd.DataFrame([purchase_1, purchase_2, purchase_3], index=['Store 1', 'Store 1', 'Store 2'])
+df.head()
+df.loc['Store 1']['Cost']
+Store 1    22.5
+Store 1     2.5
+Name: Cost, dtype: float64
+import pandas as pd
+purchase_1 = pd.Series({'Name': 'Chris',
+                        'Item Purchased': 'Dog Food',
+                        'Cost': 22.50})
+purchase_2 = pd.Series({'Name': 'Kevyn',
+                        'Item Purchased': 'Kitty Litter',
+                        'Cost': 2.50})
+purchase_3 = pd.Series({'Name': 'Vinod',
+                        'Item Purchased': 'Bird Seed',
+                        'Cost': 5.00})
+df = pd.DataFrame([purchase_1, purchase_2, purchase_3], index=['Store 1', 'Store 1', 'Store 2'])
+df.head()
+df.loc[:,['Name', 'Cost']]
+Name	Cost
+Store 1	Chris	22.5
+Store 1	Kevyn	2.5
+Store 2	Vinod	5.0
+df.drop('Store 1')
+df
+copy_df = df.copy()
+copy_df = copy_df.drop('Store 1')
+copy_df
+copy_df.drop?
+del copy_df['Name']
+copy_df
+df['Location'] = None
+df
+Dataframe Indexing and Loading
+costs = df['Cost']
+costs
+costs+=2
+costs
+df
+!cat olympics.csv
+df = pd.read_csv('olympics.csv')
+df.head()
+df = pd.read_csv('olympics.csv', index_col = 0, skiprows=1)
+df.head()
+df.columns
+for col in df.columns:
+    if col[:2]=='01':
+        df.rename(columns={col:'Gold' + col[4:]}, inplace=True)
+    if col[:2]=='02':
+        df.rename(columns={col:'Silver' + col[4:]}, inplace=True)
+    if col[:2]=='03':
+        df.rename(columns={col:'Bronze' + col[4:]}, inplace=True)
+    if col[:1]=='?':
+        df.rename(columns={col:'#' + col[1:]}, inplace=True) 
+?
+df.head()
+# Summer	Gold	Silver	Bronze	Total	# Winter	Gold.1	Silver.1	Bronze.1	Total.1	# Games	Gold.2	Silver.2	Bronze.2	Combined total
+Afghanistan (AFG)	13	0	0	2	2	0	0	0	0	0	13	0	0	2	2
+Algeria (ALG)	12	5	2	8	15	3	0	0	0	0	15	5	2	8	15
+Argentina (ARG)	23	18	24	28	70	18	0	0	0	0	41	18	24	28	70
+Armenia (ARM)	5	1	2	9	12	6	0	0	0	0	11	1	2	9	12
+Australasia (ANZ) [ANZ]	2	3	4	5	12	0	0	0	0	0	2	3	4	5	12
+Querying a DataFrame
+import pandas as pd
+?
+df = pd.read_csv('olympics.csv', index_col=0, skiprows=1)
+?
+for col in df.columns:
+    if col[:2]=='01':
+        df.rename(columns={col:'Gold'+col[4:]}, inplace=True)
+    if col[:2]=='02':
+        df.rename(columns={col:'Silver'+col[4:]}, inplace=True)
+    if col[:2]=='03':
+        df.rename(columns={col:'Bronze'+col[4:]}, inplace=True)
+    if col[:1]=='?':
+        df.rename(columns={col:'#'+col[1:]}, inplace=True)
+?
+names_ids = df.index.str.split('\s\(') # split the index by '('
+?
+df.index = names_ids.str[0] # the [0] element is the country name (new index) 
+df['ID'] = names_ids.str[1].str[:3] # the [1] element is the abbreviation or ID (take first 3 characters from that)
+?
+df = df.drop('Totals')
+def answer_one():
+    return df['Gold'].idxmax()
+answer_one()
+def answer_four():
+    df['Points'] = pd.Series((df['Gold.2']*3) + (df['Silver.2']*2) + df['Bronze.2'])
+    
+    return df['Points']
+answer_four()
+Afghanistan                            2
+Algeria                               27
+Argentina                            130
+Armenia                               16
+Australasia                           22
+Australia                            923
+Austria                              569
+Azerbaijan                            43
+Bahamas                               24
+Bahrain                                1
+Barbados                               1
+Belarus                              154
+Belgium                              276
+Bermuda                                1
+Bohemia                                5
+Botswana                               2
+Brazil                               184
+British West Indies                    2
+Bulgaria                             411
+Burundi                                3
+Cameroon                              12
+Canada                               846
+Chile                                 24
+China                               1120
+Colombia                              29
+Costa Rica                             7
+Ivory Coast                            2
+Croatia                               67
+Cuba                                 420
+Cyprus                                 2
+                                    ... 
+Spain                                268
+Sri Lanka                              4
+Sudan                                  2
+Suriname                               4
+Sweden                              1217
+Switzerland                          630
+Syria                                  6
+Chinese Taipei                        32
+Tajikistan                             4
+Tanzania                               4
+Thailand                              44
+Togo                                   1
+Tonga                                  2
+Trinidad and Tobago                   27
+Tunisia                               19
+Turkey                               191
+Uganda                                14
+Ukraine                              220
+United Arab Emirates                   3
+United States                       5684
+Uruguay                               16
+Uzbekistan                            38
+Venezuela                             18
+Vietnam                                4
+Virgin Islands                         2
+Yugoslavia                           171
+Independent Olympic Participants       4
+Zambia                                 3
+Zimbabwe                              18
+Mixed team                            38
+Name: Points, dtype: int64
+only_gold = df.where(df['Gold'] > 0)
+only_gold.head()
+import pandas as pd
+df = pd.read_csv('olympics.csv', index_col = 0, skiprows=1)
+for col in df.columns:
+    if col[:2]=='01':
+        df.rename(columns={col:'Gold' + col[4:]}, inplace=True)
+    if col[:2]=='02':
+        df.rename(columns={col:'Silver' + col[4:]}, inplace=True)
+    if col[:2]=='03':
+        df.rename(columns={col:'Bronze' + col[4:]}, inplace=True)
+    if col[:1]=='?':
+        df.rename(columns={col:'#' + col[1:]}, inplace=True) 
+#def answer_four():
+    def answer_four():
+        df['Points'] = pd.Series((df['Gold.2']*3) + (df['Silver.2']*2) + df['Bronze.2'])
+    
+        return df['Points']
+    answer_four()
+   # points = df.series(a)
+   # return points
+answer_four()
+#only_gold = df.where(df['Gold'] > 0)
+#only_gold['Gold'].count()
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+/opt/conda/lib/python3.6/site-packages/pandas/indexes/base.py in get_loc(self, key, method, tolerance)
+   2133             try:
+-> 2134                 return self._engine.get_loc(key)
+   2135             except KeyError:
+
+pandas/index.pyx in pandas.index.IndexEngine.get_loc (pandas/index.c:4433)()
+
+pandas/index.pyx in pandas.index.IndexEngine.get_loc (pandas/index.c:4279)()
+
+pandas/src/hashtable_class_helper.pxi in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13742)()
+
+pandas/src/hashtable_class_helper.pxi in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13696)()
+
+KeyError: 'Gold.2'
+
+During handling of the above exception, another exception occurred:
+
+KeyError                                  Traceback (most recent call last)
+<ipython-input-31-305365f87a11> in <module>()
+     15 
+     16         return df['Points']
+---> 17     answer_four()
+     18    # points = df.series(a)
+     19    # return points
+
+<ipython-input-31-305365f87a11> in answer_four()
+     12 #def answer_four():
+     13     def answer_four():
+---> 14         df['Points'] = pd.Series((df['Gold.2']*3) + (df['Silver.2']*2) + df['Bronze.2'])
+     15 
+     16         return df['Points']
+
+/opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in __getitem__(self, key)
+   2057             return self._getitem_multilevel(key)
+   2058         else:
+-> 2059             return self._getitem_column(key)
+   2060 
+   2061     def _getitem_column(self, key):
+
+/opt/conda/lib/python3.6/site-packages/pandas/core/frame.py in _getitem_column(self, key)
+   2064         # get column
+   2065         if self.columns.is_unique:
+-> 2066             return self._get_item_cache(key)
+   2067 
+   2068         # duplicate columns & possible reduce dimensionality
+
+/opt/conda/lib/python3.6/site-packages/pandas/core/generic.py in _get_item_cache(self, item)
+   1384         res = cache.get(item)
+   1385         if res is None:
+-> 1386             values = self._data.get(item)
+   1387             res = self._box_item_values(item, values)
+   1388             cache[item] = res
+
+/opt/conda/lib/python3.6/site-packages/pandas/core/internals.py in get(self, item, fastpath)
+   3541 
+   3542             if not isnull(item):
+-> 3543                 loc = self.items.get_loc(item)
+   3544             else:
+   3545                 indexer = np.arange(len(self.items))[isnull(self.items)]
+
+/opt/conda/lib/python3.6/site-packages/pandas/indexes/base.py in get_loc(self, key, method, tolerance)
+   2134                 return self._engine.get_loc(key)
+   2135             except KeyError:
+-> 2136                 return self._engine.get_loc(self._maybe_cast_indexer(key))
+   2137 
+   2138         indexer = self.get_indexer([key], method=method, tolerance=tolerance)
+
+pandas/index.pyx in pandas.index.IndexEngine.get_loc (pandas/index.c:4433)()
+
+pandas/index.pyx in pandas.index.IndexEngine.get_loc (pandas/index.c:4279)()
+
+pandas/src/hashtable_class_helper.pxi in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13742)()
+
+pandas/src/hashtable_class_helper.pxi in pandas.hashtable.PyObjectHashTable.get_item (pandas/hashtable.c:13696)()
+
+KeyError: 'Gold.2'
+
+import pandas as pd
+df = pd.read_csv('olympics.csv', index_col = 0, skiprows=1)
+for col in df.columns:
+    if col[:2]=='01':
+        df.rename(columns={col:'Gold' + col[4:]}, inplace=True)
+    if col[:2]=='02':
+        df.rename(columns={col:'Silver' + col[4:]}, inplace=True)
+    if col[:2]=='03':
+        df.rename(columns={col:'Bronze' + col[4:]}, inplace=True)
+    if col[:1]=='?':
+        df.rename(columns={col:'#' + col[1:]}, inplace=True) 
+?
+only_gold = df.where(df['Gold'] > 0)
+df['Gold'].count()
+147
+only_gold = only_gold.dropna()
+only_gold.head()
+only_gold = df[df['Gold'] > 0]
+only_gold.head()
+len(df[(df['Gold'] > 0) | (df['Gold.1'] > 0)])
+df[(df['Gold.1'] > 0) & (df['Gold'] == 0)]
+Indexing Dataframes
+df.head()
+df['country'] = df.index
+df = df.set_index('Gold')
+df.head()
+df = df.reset_index()
+df.head()
+df = pd.read_csv('census.csv')
+df.head()
+df['SUMLEV'].unique()
+df=df[df['SUMLEV'] == 50]
+df.head()
+columns_to_keep = ['STNAME',
+                   'CTYNAME',
+                   'BIRTHS2010',
+                   'BIRTHS2011',
+                   'BIRTHS2012',
+                   'BIRTHS2013',
+                   'BIRTHS2014',
+                   'BIRTHS2015',
+                   'POPESTIMATE2010',
+                   'POPESTIMATE2011',
+                   'POPESTIMATE2012',
+                   'POPESTIMATE2013',
+                   'POPESTIMATE2014',
+                   'POPESTIMATE2015']
+df = df[columns_to_keep]
+df.head()
+df = df.set_index(['STNAME', 'CTYNAME'])
+df.head()
+census_df = pd.read_csv('census.csv')
+df.loc['Michigan', 'Washtenaw County']
+df.loc[ [('Michigan', 'Washtenaw County'),
+         ('Michigan', 'Wayne County')] ]
+Missing values
+df = pd.read_csv('log.csv')
+df
+df.fillna?
+df = df.set_index('time')
+df = df.sort_index()
+df
+df = df.reset_index()
+df = df.set_index(['time', 'user'])
+df
+df = df.fillna(method='ffill')
+df.head()

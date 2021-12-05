@@ -1,0 +1,1863 @@
+<!DOCTYPE doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <link href="assets/img/favicon.ico" rel="icon" type="image/png"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <title>
+   Student Dashboard
+  </title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+  <meta content="width=device-width" name="viewport"/>
+  <!-- Bootstrap core CSS     -->
+  <!--TODO: Common Date Picker. UI-->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+   <link href="/static/css/animate.min.css" rel="stylesheet"/>
+   <link href="/static/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+   <link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+   <link href="/static/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="/static/poweruser/css/datatables.css" rel="stylesheet"/>
+    <script src="/static/js/jquery-1.10.2.js" type="text/javascript">
+    </script>
+    <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js">
+    </script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript">
+    </script>
+    <script src="/static/js/light-bootstrap-dashboard.js">
+    </script>
+    <script src="/static/poweruser/js/datatables.js">
+    </script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+        $('#Table').DataTable({"pageLength": 50});
+    } );
+    </script>
+   </link>
+  </link>
+ </head>
+ <style type="text/css">
+  .modal-backdrop {
+  z-index: -1;
+}
+ </style>
+ <body>
+  <div class="modal" id="modal" role="dialog">
+   <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button aria-hidden="true" class="close" data-dismiss="modal" type="button">
+       ×
+      </button>
+      <h4 class="modal-title">
+       title
+      </h4>
+     </div>
+     <div class="modal-body">
+     </div>
+     <div class="modal-footer">
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="wrapper">
+   <div class="sidebar" data-color="purple">
+    <div class="sidebar-wrapper">
+     <div class="logo">
+      <a class="simple-text">
+       Dashboard
+      </a>
+     </div>
+     <ul class="nav">
+      <li>
+       <a href="/dashboard/">
+        <i class="pe-7s-graph">
+        </i>
+        <p>
+         Dashboard
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/profile/">
+        <i class="pe-7s-user">
+        </i>
+        <p>
+         My Profile
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/resume/">
+        <i class="pe-7s-note2">
+        </i>
+        <p>
+         Manage Resume
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/jobapplications/">
+        <i class="pe-7s-news-paper">
+        </i>
+        <p>
+         Job Openings
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/applications/">
+        <i class="pe-7s-science">
+        </i>
+        <p>
+         Your applications
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/jaf_list/">
+        <i class="pe-7s-bell">
+        </i>
+        <p>
+         Proforma
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/testschedule/">
+        <i class="pe-7s-date pe-5x">
+        </i>
+        <p>
+         Calendar
+        </p>
+       </a>
+      </li>
+      <!--
+		<li>
+		   <a href="/personal_calendar">
+		   	<i class="pe-7s-date pe-5x"></i>
+			   <p> Personal Calendar</p>
+		   </a>
+		</li>
+		-->
+      <li class="">
+       <a href="/stats/" target="_blank">
+        <i class="pe-7s-rocket">
+        </i>
+        <p>
+         Stats
+        </p>
+       </a>
+      </li>
+      <li class="">
+       <a href="/contact_us/" target="blank">
+        <i class="pe-7s-rocket">
+        </i>
+        <p>
+         Contact Us
+        </p>
+       </a>
+      </li>
+      <li class="">
+       <a href="/about/" target="blank">
+        <i class="pe-7s-rocket">
+        </i>
+        <p>
+         Credits
+        </p>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="main-panel">
+    <nav class="navbar navbar-default navbar-fixed">
+     <div class="container-fluid">
+      <div class="navbar-header">
+       <button class="navbar-toggle" data-target="#navigation-example-2" data-toggle="collapse" type="button">
+        <span class="sr-only">
+         Toggle navigation
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+       </button>
+       <a class="navbar-brand" href="#">
+        Welcome
+       </a>
+      </div>
+      <div class="collapse navbar-collapse">
+       <ul class="nav navbar-nav navbar-right">
+        <li>
+         <a href="/yashkrit/changepassword/">
+          Change Password
+         </a>
+        </li>
+        <li>
+         <a href="/logout/">
+          Log out
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </nav>
+    <div class="content">
+     <div class="container-fluid">
+      <div class="row">
+       <div class="col-md-12">
+        <div class="card">
+         <div class="header">
+          <h4 class="title">
+           Proforma
+          </h4>
+          <p class="category">
+           Companies open to your department
+          </p>
+          <hr/>
+         </div>
+         <div class="content">
+          <div class="text-center">
+           <table class="table table-centered table-reponsive table-striped table-bordered table-hover">
+            <tbody>
+             <tr>
+              <td>
+               Company :
+              </td>
+              <td>
+               Jumbotail Technologies
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Company Name :
+              </td>
+              <td>
+               Jumbotail Technologies
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Nature Of Business :
+              </td>
+              <td>
+               B2B E- commerce/ Internet
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Designation :
+              </td>
+              <td>
+               Associate Analyst
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Tentative Job Location :
+              </td>
+              <td>
+               Bangalore
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Description :
+              </td>
+              <td>
+               <p style="text-align:center">
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   <strong>
+                    <img src="https://lh4.googleusercontent.com/FFRuVC4ZYhzURubNwRitsVfzp_Lkg_KRZmZ6DYiEeWRELBfuhcasKmGah4Zptv578OxhNzEv5zMK8gsxNkNsW7wbkjqm0KNzSC0VrDFTOgj3yidSAHuGeU8hRaLBmePJXiChp0N9" style="height:79px; width:270px"/>
+                   </strong>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <table cellspacing="0" style="border-collapse:collapse; border:none; width:421px">
+                <tbody>
+                 <tr>
+                  <td style="border-bottom:1px solid #000000; border-left:1px solid #000000; border-right:1px solid #000000; border-top:1px solid #000000; vertical-align:top; width:243px">
+                   <p style="text-align:center">
+                   </p>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+               <p>
+                <span style="font-size:12pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   <span style="background-color:#ffffff">
+                    <strong>
+                     <u>
+                      About Jumbotail:
+                     </u>
+                    </strong>
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   <span style="background-color:#ffffff">
+                    Jumbotail is a top tier VC funded startup, building an online wholesale marketplace for food and grocery, targeted at wholesale buyers. Our vision is to organize the food and grocery ecosystem in India using technology, data science, and design. Jumbotail Marketplace offers a wide selection of products including staples, spices, dry fruits, packaged foods, and FMCG products. Sellers (traders, manufacturers, and brands) can list their food, grocery and FMCG products. The Jumbotail Marketplace is accessible to customers through a mobile app available in 4 languages - Kannada, Malayalam, Hindi, and English. Jumbotail provides full stack services including storefront delivery and payment collection for its sellers, as well as working capital credit from third-party credit providers to its customers using rich transactional data and proprietary algorithms.
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   <span style="background-color:#ffffff">
+                    While our market potential is huge - in the order of hundreds of billions of dollars, the opportunity requires us to solve challenging problems that are so unique to India that copycat models will not work. We are putting our customers first and building technologies, products, platforms and services, and cutting-edge supply chains that will work for the next billion Indians who have fundamentally different needs - access, language, selection, supply chain, financial, cultural, operating in distributed, chaotic and unstructured environments.
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   <span style="background-color:#ffffff">
+                    We have a strong, passionate and hungry team who are motivated to solve real-world problems and impact lives. Our team consists of alumni from Stanford, IITs, IIMs BITS, ISB, and top NITs, having several years of industry experience in leading companies like Flipkart, Amazon, eBay, BCG, Housing and Grofers. We work across diverse functions spanning across technology, product, design, business/category teams, catalog, merchandising, decision sciences, supply chain, operations, finance, credit, customer experience, people experience. Together, we are a reimagining and re-engineering the food and grocery ecosystem in India through intelligent technology, innovative business models, and intuitive design. We are serving thousands of happy and satisfied customers who trust Jumbotail for their food and grocery needs every day.
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+               </p>
+               <p>
+                <span style="font-size:12pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   <strong>
+                    <u>
+                     Job Description:
+                    </u>
+                   </strong>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <ul>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Set up visibilities for all processes across all legs for Supply Chain - by building pipelines to consolidate data from multiple sources (Online and Offline) and generate reports/insights/actionables
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Collaborate with Planning &amp; Design team, GCC, Operations, business, product and technology to support them with visibility, data and insights
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     lead investigations into multiple streams of data, analyze users to empower SC to drive efficiencies
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Defining success metrics for initiatives/product launches and setting up visibility for the same
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Providing support to business teams on specific metrics and analysis in a time bound manner
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Delivering insights to business teams to reach their targets
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Preparing performance dashboards on a periodic basis and highlighting issues
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Shortlisting/Prioritising target areas and closing loops on analytics requirements before pilots and post experimentation/product launch/initiative
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+               </p>
+               <p style="text-align:justify">
+                <span style="font-size:12pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   <span style="background-color:#ffffff">
+                    <strong>
+                     <u>
+                      Requirements:
+                     </u>
+                    </strong>
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <ul>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     A bachelor’s degree in Statistics or other quantitative disciplines such as Engineering, Applied Mathematics, etc
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     0-3 years of professional experience in an analytical role
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Hands on experience in SQL and Excel/Spreadsheets to build dashboards and build data pipeline for consumption of larger set of audience is mandatory
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Ability to draw conclusions from data and recommend actions
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Roboto,sans-serif">
+                   <span style="color:#000000">
+                    <span style="background-color:#ffffff">
+                     Strong verbal and written communication skills
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+                <br/>
+                <br/>
+                <br/>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   We are looking for leaders at all levels who have the hunger to work with some of the smartest people, who are driven by a sense of purpose, and who wish to leave a legacy in their respective domains and among their professional fraternity. We are not just building apps or tech platforms, but rather building distributed ecosystems connected through intelligent technology that can change the face of the food and grocery consumption pipelines in India, forever, for the better.
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <br/>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#000000">
+                   An ideal candidate for this role is someone who has-
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <br/>
+                <br/>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#222222">
+                   <span style="background-color:#ffffff">
+                    We would like to hear from candidates who have the hunger to impact real lives and who can match our high bar on
+                   </span>
+                  </span>
+                 </span>
+                </span>
+                <a href="http://jumbotail.com/core-values/" style="text-decoration:none">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Arial">
+                   <span style="color:#1155cc">
+                    <span style="background-color:#ffffff">
+                     <strong>
+                      <u>
+                       Core Values
+                      </u>
+                     </strong>
+                    </span>
+                   </span>
+                  </span>
+                 </span>
+                </a>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#222222">
+                   <span style="background-color:#ffffff">
+                    that we live by.
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#222222">
+                   <span style="background-color:#ffffff">
+                    If you-
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#222222">
+                   <span style="background-color:#ffffff">
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <ul>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Arial">
+                   <span style="color:#222222">
+                    can apply first principles thinking to solve problems
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Arial">
+                   <span style="color:#222222">
+                    can envision a great future that you want to create
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Arial">
+                   <span style="color:#222222">
+                    have the fire in your belly to get out of your cube and do something about your vision and passion
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Arial">
+                   <span style="color:#222222">
+                    want to work with some really smart people, and still raise the bar for all of us
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li style="list-style-type:disc">
+                 <span style="font-size:11pt">
+                  <span style="font-family:Arial">
+                   <span style="color:#222222">
+                    can have fun and help your colleagues have fun doing all of the above..
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#222222">
+                   <span style="background-color:#ffffff">
+                    ...feel free to reach out to us at
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <span style="font-size:12pt">
+                 <span style="font-family:Arial">
+                  <span style="color:#222222">
+                   <span style="background-color:#ffffff">
+                    <strong>
+                     mission@jumbotail.com
+                    </strong>
+                   </span>
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+               </p>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Eligibilty :
+              </td>
+              <td>
+               <table class="table table-centered table-reponsive text-center table-bordered table-striped table-sm">
+                <thead class="">
+                 <tr>
+                  <td>
+                   Department
+                  </td>
+                  <td>
+                   BT
+                  </td>
+                  <td>
+                   BS
+                  </td>
+                  <td>
+                   MT
+                  </td>
+                  <td>
+                   DoubleMajor
+                  </td>
+                  <td>
+                   dual
+                  </td>
+                  <td>
+                   dualB
+                  </td>
+                  <td>
+                   dualC
+                  </td>
+                  <td>
+                   Mdes
+                  </td>
+                  <td>
+                   MBA
+                  </td>
+                  <td>
+                   Phd
+                  </td>
+                  <td>
+                   MSc
+                  </td>
+                  <td>
+                   MSR
+                  </td>
+                 </tr>
+                </thead>
+                <tbody>
+                 <tr>
+                  <td>
+                   AE
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   Y
+                  </td>
+                  <tr>
+                   <td>
+                    BSBE
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    Y
+                   </td>
+                   <tr>
+                    <td>
+                     CE
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     Y
+                    </td>
+                    <tr>
+                     <td>
+                      CHE
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      Y
+                     </td>
+                     <tr>
+                      <td>
+                       CSE
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <tr>
+                       <td>
+                        EE
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <tr>
+                        <td>
+                         ES
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         Y
+                        </td>
+                        <td>
+                         Y
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         Y
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         Y
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         Y
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <tr>
+                         <td>
+                          ME
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          Y
+                         </td>
+                         <tr>
+                          <td>
+                           MSE
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           Y
+                          </td>
+                          <tr>
+                           <td>
+                            PHY
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            Y
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            Y
+                           </td>
+                           <td>
+                            Y
+                           </td>
+                           <td>
+                            Y
+                           </td>
+                           <td>
+                            Y
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            Y
+                           </td>
+                           <td>
+                            Y
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <tr>
+                            <td>
+                             CHM
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             Y
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             Y
+                            </td>
+                            <td>
+                             Y
+                            </td>
+                            <td>
+                             Y
+                            </td>
+                            <td>
+                             Y
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             Y
+                            </td>
+                            <td>
+                             Y
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <tr>
+                             <td>
+                              MTH
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <tr>
+                              <td>
+                               ECO
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               Y
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               Y
+                              </td>
+                              <td>
+                               Y
+                              </td>
+                              <td>
+                               Y
+                              </td>
+                              <td>
+                               Y
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               Y
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <tr>
+                               <td>
+                                DES
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                Y
+                               </td>
+                               <td>
+                                Y
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                Y
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <tr>
+                                <td>
+                                 IME
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 Y
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 Y
+                                </td>
+                                <td>
+                                 Y
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 Y
+                                </td>
+                                <td>
+                                 Y
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <tr>
+                                 <td>
+                                  CGS
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  Y
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  Y
+                                 </td>
+                                 <tr>
+                                  <td>
+                                   HSS
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   Y
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <tr>
+                                   <td>
+                                    EEM
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    Y
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    Y
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    Y
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <tr>
+                                    <td>
+                                     MSP
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     Y
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     Y
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <tr>
+                                     <td>
+                                      NET
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      Y
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      Y
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      Y
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <tr>
+                                      <td>
+                                       PSE
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       Y
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       Y
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       Y
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       Y
+                                      </td>
+                                      <tr>
+                                       <td>
+                                        Stats
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        Y
+                                       </td>
+                                       <td>
+                                        Y
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                      </tr>
+                                     </tr>
+                                    </tr>
+                                   </tr>
+                                  </tr>
+                                 </tr>
+                                </tr>
+                               </tr>
+                              </tr>
+                             </tr>
+                            </tr>
+                           </tr>
+                          </tr>
+                         </tr>
+                        </tr>
+                       </tr>
+                      </tr>
+                     </tr>
+                    </tr>
+                   </tr>
+                  </tr>
+                 </tr>
+                </tbody>
+               </table>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Cost to Company :
+              </td>
+              <td>
+               <p>
+                5-6 LPA, we are open to extending the package if the candidate fits the role requirement
+               </p>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Package Details :
+              </td>
+              <td>
+               <p>
+                5-6 LPA, we are open to extending the package if the candidate fits the role requirement
+               </p>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Bond  :
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Medical Requirements :
+              </td>
+              <td>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Resume Shortlist :
+              </td>
+              <td>
+               True
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Resume Shortlist Criteria:
+              </td>
+              <td>
+               N/A
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Aptitude Test:
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Group Discussion:
+              </td>
+              <td>
+               True
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Group Discussion Duration:
+              </td>
+              <td>
+               N/A
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Group Discussion Strengtd:
+              </td>
+              <td>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Technical Test:
+              </td>
+              <td>
+               True
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Technical Test Duration:
+              </td>
+              <td>
+               N/A
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Technical Interview:
+              </td>
+              <td>
+               True
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Technical Interview Duration:
+              </td>
+              <td>
+               N/A
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Number of Techincal Interview Rounds:
+              </td>
+              <td>
+               4
+              </td>
+             </tr>
+             <tr>
+              <td>
+               HR Interview:
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+            </tbody>
+           </table>
+          </div>
+         </div>
+         <p>
+         </p>
+         <hr/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- <div class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Company
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                   Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="pull-right text-block">
+                        Developed & Maintained by <a href="/web_team" target="blank">Web Team</a>, Student Placement Office IIT Kanpur </p>
+
+                </div>
+            </div>
+
+                 -->
+  </div>
+ </body>
+</html>
+<script type="text/javascript">
+ $(document).ready(function(){
+    $('#confirm').on('show.bs.modal',function(event){
+      var button = $(event.relatedTarget);
+      var resume_id = button.data('resume');
+      var modal = $(this);
+      modal.find(".modal-body button[name = 'delete']").val(resume_id);
+    });
+  })
+</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome <b></b> to <b>IAS Portal</b>"
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+        });
+</script>
+<!-- <script type="text/javascript">
+    $('#news').html($('#news').text());
+    </script> -->

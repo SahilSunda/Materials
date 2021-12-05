@@ -1,0 +1,1938 @@
+<!DOCTYPE doctype html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <link href="assets/img/favicon.ico" rel="icon" type="image/png"/>
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+  <title>
+   Student Dashboard
+  </title>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+  <meta content="width=device-width" name="viewport"/>
+  <!-- Bootstrap core CSS     -->
+  <!--TODO: Common Date Picker. UI-->
+  <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+   <link href="/static/css/animate.min.css" rel="stylesheet"/>
+   <link href="/static/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
+   <link href="https://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+   <link href="/static/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="/static/poweruser/css/datatables.css" rel="stylesheet"/>
+    <script src="/static/js/jquery-1.10.2.js" type="text/javascript">
+    </script>
+    <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.js">
+    </script>
+    <script src="/static/js/bootstrap.min.js" type="text/javascript">
+    </script>
+    <script src="/static/js/light-bootstrap-dashboard.js">
+    </script>
+    <script src="/static/poweruser/js/datatables.js">
+    </script>
+    <script type="text/javascript">
+     $(document).ready(function() {
+        $('#Table').DataTable({"pageLength": 50});
+    } );
+    </script>
+   </link>
+  </link>
+ </head>
+ <style type="text/css">
+  .modal-backdrop {
+  z-index: -1;
+}
+ </style>
+ <body>
+  <div class="modal" id="modal" role="dialog">
+   <div class="modal-dialog">
+    <div class="modal-content">
+     <div class="modal-header">
+      <button aria-hidden="true" class="close" data-dismiss="modal" type="button">
+       ×
+      </button>
+      <h4 class="modal-title">
+       title
+      </h4>
+     </div>
+     <div class="modal-body">
+     </div>
+     <div class="modal-footer">
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="wrapper">
+   <div class="sidebar" data-color="purple">
+    <div class="sidebar-wrapper">
+     <div class="logo">
+      <a class="simple-text">
+       Dashboard
+      </a>
+     </div>
+     <ul class="nav">
+      <li>
+       <a href="/dashboard/">
+        <i class="pe-7s-graph">
+        </i>
+        <p>
+         Dashboard
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/profile/">
+        <i class="pe-7s-user">
+        </i>
+        <p>
+         My Profile
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/resume/">
+        <i class="pe-7s-note2">
+        </i>
+        <p>
+         Manage Resume
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/jobapplications/">
+        <i class="pe-7s-news-paper">
+        </i>
+        <p>
+         Job Openings
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/applications/">
+        <i class="pe-7s-science">
+        </i>
+        <p>
+         Your applications
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/jaf_list/">
+        <i class="pe-7s-bell">
+        </i>
+        <p>
+         Proforma
+        </p>
+       </a>
+      </li>
+      <li>
+       <a href="/testschedule/">
+        <i class="pe-7s-date pe-5x">
+        </i>
+        <p>
+         Calendar
+        </p>
+       </a>
+      </li>
+      <!--
+		<li>
+		   <a href="/personal_calendar">
+		   	<i class="pe-7s-date pe-5x"></i>
+			   <p> Personal Calendar</p>
+		   </a>
+		</li>
+		-->
+      <li class="">
+       <a href="/stats/" target="_blank">
+        <i class="pe-7s-rocket">
+        </i>
+        <p>
+         Stats
+        </p>
+       </a>
+      </li>
+      <li class="">
+       <a href="/contact_us/" target="blank">
+        <i class="pe-7s-rocket">
+        </i>
+        <p>
+         Contact Us
+        </p>
+       </a>
+      </li>
+      <li class="">
+       <a href="/about/" target="blank">
+        <i class="pe-7s-rocket">
+        </i>
+        <p>
+         Credits
+        </p>
+       </a>
+      </li>
+     </ul>
+    </div>
+   </div>
+   <div class="main-panel">
+    <nav class="navbar navbar-default navbar-fixed">
+     <div class="container-fluid">
+      <div class="navbar-header">
+       <button class="navbar-toggle" data-target="#navigation-example-2" data-toggle="collapse" type="button">
+        <span class="sr-only">
+         Toggle navigation
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+        <span class="icon-bar">
+        </span>
+       </button>
+       <a class="navbar-brand" href="#">
+        Welcome
+       </a>
+      </div>
+      <div class="collapse navbar-collapse">
+       <ul class="nav navbar-nav navbar-right">
+        <li>
+         <a href="/yashkrit/changepassword/">
+          Change Password
+         </a>
+        </li>
+        <li>
+         <a href="/logout/">
+          Log out
+         </a>
+        </li>
+       </ul>
+      </div>
+     </div>
+    </nav>
+    <div class="content">
+     <div class="container-fluid">
+      <div class="row">
+       <div class="col-md-12">
+        <div class="card">
+         <div class="header">
+          <h4 class="title">
+           Proforma
+          </h4>
+          <p class="category">
+           Companies open to your department
+          </p>
+          <hr/>
+         </div>
+         <div class="content">
+          <div class="text-center">
+           <table class="table table-centered table-reponsive table-striped table-bordered table-hover">
+            <tbody>
+             <tr>
+              <td>
+               Company :
+              </td>
+              <td>
+               Ola Mobility
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Company Name :
+              </td>
+              <td>
+               Ola Mobility
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Nature Of Business :
+              </td>
+              <td>
+               Mobility
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Designation :
+              </td>
+              <td>
+               Data Scientist
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Tentative Job Location :
+              </td>
+              <td>
+               Bengaluru
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Description :
+              </td>
+              <td>
+               <p style="margin-left:11px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   About Ola
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p style="margin-left:11px; margin-right:8px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   India’s largest mobility platform, and one of the world’s largest ride-hailing platforms, Ola has revolutionized mobility, for over a billion people, across 3 continents. In its decade long journey so far, Ola has forayed into other, newer business streams as well, spanning its wings across Financial Services, Cloud Kitchens, Used Vehicle Sales, and Electric Vehicles, which are being manufactured at the Ola Futurefactory, which is the largest, most advanced and sustainable two wheeler factory in the world. Ola is dedicated to transitioning the world to sustainable mobility and making the world better than we found it.
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p style="margin-left:11px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   About the Department:
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p style="margin-left:11px; margin-right:44px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   The Data Science &amp; Machine Learning team at Ola works on building intelligent systems using techniques in machine learning, optimization, signal analysis, and statistics. At Ola, we have an incredible amount of data that captures a comprehensive view of our customers and driver-partners. Very few companies in the world have this diversity and scale of data, and hence the breadth of problems available to solve in a data-driven fashion is immense.
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p style="margin-left:11px; margin-right:8px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   We tackle real-life problems on a daily basis and not only get to impact company revenue but also deliver a richer experience to our customers and driver-partners alike. This requires us to be product-driven while the complexity of problems re-quires us to always push the state-of-the-art. In fact, beneath every tap you make on our app, there is a data-driven, intelligent layer trying to achieve a business metric.
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p style="margin-left:11px; margin-right:59px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   We are looking for great problem solvers who can tap into the potential of data and deliver scalable and robust data products.
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p style="margin-left:11px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   What should you be good at:
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABLUAAAAFCAIAAAA8IkkJAAAAQ0lEQVR4nO3XQQ0AIQAEseX8eyCI4WyAFB6IgIRWwXyn9FH/2QIAAMDbvtMBAAAAXMEfAgAAkPhDAAAANn8IAABAkiw9QASU+EDU+AAAAABJRU5ErkJggg==" style="height:2px; width:602px"/>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <ul>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    You must possess the ability to transform business requirements into data fashion
+                   </span>
+                  </span>
+                 </span>
+                </li>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    Being a team player, so you can collaborate with peers from across functions You must be proficient in Python, Scala, Java or similar languages
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+               </p>
+               <ul>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    You should be enthusiastic about engaging actively with business/product stakeholders to identify core issues and translate them into ML problems
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+               </p>
+               <ul>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    Using analytics and statistics to improve our ability to detect, understand and address emerging trends across the seller risk portfolio and identify levers that maximize the risk reward relationship
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+               </p>
+               <ul>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    You must be able to do a deep dive analysis on large datasets using SQL/R/Python or other tools and structuring of analyses using MS Excel.
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+               </p>
+               <ul>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    Developing analytical insights and models using innovative statistical and modelling techniques.
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <img src="data:image/png;base64,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" style="height:38px; width:1309px"/>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p style="margin-left:11px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   Educational Qualifications:
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABF0AAAAFCAIAAAAYFwSMAAAAP0lEQVR4nO3XURUAEBQFQfTv4AhDDaKI8T7uTIL93b7vPG81AACAVKM6AAAAoJgvAgAA0vkiAAAgnS8CAADSfbVYBJQdtNKdAAAAAElFTkSuQmCC" style="height:2px; width:558px"/>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <table cellspacing="0" class="Table" style="border-collapse:collapse; margin-left:9px">
+                <tbody>
+                 <tr>
+                  <td colspan="2" style="height:57px; vertical-align:bottom; width:717px">
+                   <p>
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       Degree
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td colspan="2" style="height:57px; vertical-align:bottom; width:536px">
+                   <p style="margin-left:41px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       Branch
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:57px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style="height:66px; vertical-align:bottom; width:43px">
+                   <p style="margin-left:5px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       •
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:66px; vertical-align:bottom; width:675px">
+                   <p style="margin-left:24px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       B.E/B.Tech,
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:66px; vertical-align:bottom; width:71px">
+                   <p style="margin-left:48px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       •
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:66px; vertical-align:bottom; width:467px">
+                   <p style="margin-left:11px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       CSE
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:66px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td rowspan="2" style="height:48px; vertical-align:bottom; width:43px">
+                   <p style="margin-left:5px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       •
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td rowspan="2" style="height:48px; vertical-align:bottom; width:675px">
+                   <p style="margin-left:24px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       B.Tech+M.Tech
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td colspan="2" style="height:48px; vertical-align:bottom; width:536px">
+                   <p style="margin-left:48px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       • ECE
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:48px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td rowspan="2" style="height:14px; vertical-align:bottom; width:71px">
+                   <p style="margin-left:48px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       •
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td rowspan="2" style="height:14px; vertical-align:bottom; width:467px">
+                   <p style="margin-left:11px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       Industrial
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:14px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td rowspan="2" style="height:34px; vertical-align:bottom; width:43px">
+                   <p style="margin-left:5px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       •
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td rowspan="2" style="height:34px; vertical-align:bottom; width:675px">
+                   <p style="margin-left:24px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       M.Tech(Integrated with B.Tech) only
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:34px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td rowspan="2" style="height:28px; vertical-align:bottom; width:71px">
+                   <p style="margin-left:48px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       •
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td rowspan="2" style="height:28px; vertical-align:bottom; width:467px">
+                   <p style="margin-left:11px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       Mathematics &amp; Computing
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:28px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style="height:21px; vertical-align:bottom; width:43px">
+                   <p>
+                   </p>
+                  </td>
+                  <td style="height:21px; vertical-align:bottom; width:675px">
+                   <p>
+                   </p>
+                  </td>
+                  <td style="height:21px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td style="height:49px; vertical-align:bottom; width:43px">
+                   <p>
+                   </p>
+                  </td>
+                  <td style="height:49px; vertical-align:bottom; width:675px">
+                   <p>
+                   </p>
+                  </td>
+                  <td style="height:49px; vertical-align:bottom; width:71px">
+                   <p style="margin-left:48px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       •
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:49px; vertical-align:bottom; width:467px">
+                   <p style="margin-left:11px">
+                    <span style="font-size:11pt">
+                     <span style='font-family:"Times New Roman",serif'>
+                      <span style='font-family:"Arial",sans-serif'>
+                       Electrical branches
+                      </span>
+                     </span>
+                    </span>
+                   </p>
+                  </td>
+                  <td style="height:49px; vertical-align:bottom; width:0px">
+                   <p>
+                   </p>
+                  </td>
+                 </tr>
+                </tbody>
+               </table>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <p style="margin-left:11px">
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <span style='font-family:"Arial",sans-serif'>
+                   Software/Tools System Exposure:
+                  </span>
+                 </span>
+                </span>
+               </p>
+               <p>
+                <span style="font-size:11pt">
+                 <span style='font-family:"Times New Roman",serif'>
+                  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABYUAAAAFCAIAAACVXxTxAAAARElEQVR4nO3YQRUAEAAFQfTv4AlDDaJo8R3MJNjz1rn7OqMAAAAApLTXAQAAAMB3/AgAAAAgzY8AAAAA0vwIAAAAIO0C23kElGNMKlkAAAAASUVORK5CYII=" style="height:2px; width:706px"/>
+                 </span>
+                </span>
+               </p>
+               <p>
+               </p>
+               <p>
+               </p>
+               <ul>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    Excellent coding skills in Python/Java/Scala or similar languages
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+               <p>
+               </p>
+               <ul>
+                <li>
+                 <span style="font-size:11pt">
+                  <span style='font-family:"Times New Roman",serif'>
+                   <span style='font-family:"Arial",sans-serif'>
+                    Knowledge of Tensorflow, Scikit-Learn, Spark
+                   </span>
+                  </span>
+                 </span>
+                </li>
+               </ul>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Eligibilty :
+              </td>
+              <td>
+               <table class="table table-centered table-reponsive text-center table-bordered table-striped table-sm">
+                <thead class="">
+                 <tr>
+                  <td>
+                   Department
+                  </td>
+                  <td>
+                   BT
+                  </td>
+                  <td>
+                   BS
+                  </td>
+                  <td>
+                   MT
+                  </td>
+                  <td>
+                   DoubleMajor
+                  </td>
+                  <td>
+                   dual
+                  </td>
+                  <td>
+                   dualB
+                  </td>
+                  <td>
+                   dualC
+                  </td>
+                  <td>
+                   Mdes
+                  </td>
+                  <td>
+                   MBA
+                  </td>
+                  <td>
+                   Phd
+                  </td>
+                  <td>
+                   MSc
+                  </td>
+                  <td>
+                   MSR
+                  </td>
+                 </tr>
+                </thead>
+                <tbody>
+                 <tr>
+                  <td>
+                   AE
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <td>
+                   -
+                  </td>
+                  <td>
+                   N
+                  </td>
+                  <tr>
+                   <td>
+                    BSBE
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <td>
+                    -
+                   </td>
+                   <td>
+                    N
+                   </td>
+                   <tr>
+                    <td>
+                     CE
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <td>
+                     -
+                    </td>
+                    <td>
+                     N
+                    </td>
+                    <tr>
+                     <td>
+                      CHE
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <td>
+                      -
+                     </td>
+                     <td>
+                      N
+                     </td>
+                     <tr>
+                      <td>
+                       CSE
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       N
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       Y
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       N
+                      </td>
+                      <td>
+                       -
+                      </td>
+                      <td>
+                       N
+                      </td>
+                      <tr>
+                       <td>
+                        EE
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        N
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        Y
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        N
+                       </td>
+                       <td>
+                        -
+                       </td>
+                       <td>
+                        N
+                       </td>
+                       <tr>
+                        <td>
+                         ES
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         N
+                        </td>
+                        <td>
+                         N
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         N
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         N
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         N
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <td>
+                         -
+                        </td>
+                        <tr>
+                         <td>
+                          ME
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <td>
+                          -
+                         </td>
+                         <td>
+                          N
+                         </td>
+                         <tr>
+                          <td>
+                           MSE
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <td>
+                           -
+                          </td>
+                          <td>
+                           N
+                          </td>
+                          <tr>
+                           <td>
+                            PHY
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            N
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            N
+                           </td>
+                           <td>
+                            N
+                           </td>
+                           <td>
+                            N
+                           </td>
+                           <td>
+                            N
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <td>
+                            N
+                           </td>
+                           <td>
+                            N
+                           </td>
+                           <td>
+                            -
+                           </td>
+                           <tr>
+                            <td>
+                             CHM
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             N
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             N
+                            </td>
+                            <td>
+                             N
+                            </td>
+                            <td>
+                             N
+                            </td>
+                            <td>
+                             N
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <td>
+                             N
+                            </td>
+                            <td>
+                             N
+                            </td>
+                            <td>
+                             -
+                            </td>
+                            <tr>
+                             <td>
+                              MTH
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              Y
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <td>
+                              N
+                             </td>
+                             <td>
+                              N
+                             </td>
+                             <td>
+                              -
+                             </td>
+                             <tr>
+                              <td>
+                               ECO
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               N
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               N
+                              </td>
+                              <td>
+                               N
+                              </td>
+                              <td>
+                               N
+                              </td>
+                              <td>
+                               N
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               N
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <td>
+                               -
+                              </td>
+                              <tr>
+                               <td>
+                                DES
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                N
+                               </td>
+                               <td>
+                                N
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                N
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <td>
+                                -
+                               </td>
+                               <tr>
+                                <td>
+                                 IME
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 N
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 N
+                                </td>
+                                <td>
+                                 N
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 N
+                                </td>
+                                <td>
+                                 N
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <td>
+                                 -
+                                </td>
+                                <tr>
+                                 <td>
+                                  CGS
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  N
+                                 </td>
+                                 <td>
+                                  -
+                                 </td>
+                                 <td>
+                                  N
+                                 </td>
+                                 <tr>
+                                  <td>
+                                   HSS
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   N
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <td>
+                                   -
+                                  </td>
+                                  <tr>
+                                   <td>
+                                    EEM
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    N
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    N
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    N
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <td>
+                                    -
+                                   </td>
+                                   <tr>
+                                    <td>
+                                     MSP
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     N
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     N
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <td>
+                                     -
+                                    </td>
+                                    <tr>
+                                     <td>
+                                      NET
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      N
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      N
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      N
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <td>
+                                      -
+                                     </td>
+                                     <tr>
+                                      <td>
+                                       PSE
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       N
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       N
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       N
+                                      </td>
+                                      <td>
+                                       -
+                                      </td>
+                                      <td>
+                                       N
+                                      </td>
+                                      <tr>
+                                       <td>
+                                        Stats
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                       <td>
+                                        Y
+                                       </td>
+                                       <td>
+                                        Y
+                                       </td>
+                                       <td>
+                                        -
+                                       </td>
+                                      </tr>
+                                     </tr>
+                                    </tr>
+                                   </tr>
+                                  </tr>
+                                 </tr>
+                                </tr>
+                               </tr>
+                              </tr>
+                             </tr>
+                            </tr>
+                           </tr>
+                          </tr>
+                         </tr>
+                        </tr>
+                       </tr>
+                      </tr>
+                     </tr>
+                    </tr>
+                   </tr>
+                  </tr>
+                 </tr>
+                </tbody>
+               </table>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Cost to Company :
+              </td>
+              <td>
+               <p>
+                <strong>
+                 20L+ 3L JB
+                </strong>
+               </p>
+               <p>
+                <strong>
+                 Joining Bonus payable in 1 tranche recoverable over 18 months
+                </strong>
+               </p>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Package Details :
+              </td>
+              <td>
+               <p>
+                <strong>
+                 1. One way economy travel for distance &gt;1000 km at the time of joining
+                </strong>
+               </p>
+               <p>
+                <strong>
+                 2. One way travel by road or train on actuals up to INR 2000 for distance &lt;1000 km
+                </strong>
+               </p>
+               <p>
+                <strong>
+                 3. Initial 14 days stay arrangement for out-of-station candidates or reimbursement as per TA policy.
+                </strong>
+               </p>
+               <p>
+                <strong>
+                 4. Joining Bonus payable in 1 tranche recoverable over 18 months (only for campus)
+                </strong>
+               </p>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Bond  :
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Medical Requirements :
+              </td>
+              <td>
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Resume Shortlist :
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Aptitude Test:
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Group Discussion:
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Technical Test:
+              </td>
+              <td>
+               True
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Technical Test Duration:
+              </td>
+              <td>
+               50 min
+              </td>
+             </tr>
+             <tr>
+              <td>
+               Technical Interview:
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+             <tr>
+              <td>
+               HR Interview:
+              </td>
+              <td>
+               False
+              </td>
+             </tr>
+            </tbody>
+           </table>
+          </div>
+         </div>
+         <p>
+         </p>
+         <hr/>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <!-- <div class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Company
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Portfolio
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                   Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="pull-right text-block">
+                        Developed & Maintained by <a href="/web_team" target="blank">Web Team</a>, Student Placement Office IIT Kanpur </p>
+
+                </div>
+            </div>
+
+                 -->
+  </div>
+ </body>
+</html>
+<script type="text/javascript">
+ $(document).ready(function(){
+    $('#confirm').on('show.bs.modal',function(event){
+      var button = $(event.relatedTarget);
+      var resume_id = button.data('resume');
+      var modal = $(this);
+      modal.find(".modal-body button[name = 'delete']").val(resume_id);
+    });
+  })
+</script>
+<script type="text/javascript">
+ $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome <b></b> to <b>IAS Portal</b>"
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+        });
+</script>
+<!-- <script type="text/javascript">
+    $('#news').html($('#news').text());
+    </script> -->
